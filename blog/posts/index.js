@@ -1,15 +1,17 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 const { randomBytes } = require("crypto");
 
 const app = express();
+app.use(bodyParser.json());
 
 const posts = {};
 
-app.get("/post", (req, res) => {
+app.get("/posts", (req, res) => {
   res.send(posts);
 });
 
-app.post("/post", (req, res) => {
+app.post("/posts", (req, res) => {
   const id = randomBytes(4).toString("hex");
   const { title } = req.body;
 
@@ -17,6 +19,8 @@ app.post("/post", (req, res) => {
     id,
     title,
   };
+
+  res.send(posts[id]);
 });
 
 app.listen(4000, () => {
