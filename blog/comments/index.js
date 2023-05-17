@@ -62,7 +62,6 @@ app.post("/events", async (req, res) => {
         content,
       },
     });
-    console.log("sfdsd");
   }
   res.send({});
 });

@@ -19,9 +19,8 @@ app.post("/events", async (req, res) => {
         content: data.content,
       },
     });
-    console.log("fdfdfdf");
   }
-  console.log("awa");
+
   res.send({});
 });
 
