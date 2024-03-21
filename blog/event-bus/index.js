@@ -1,18 +1,12 @@
 const express = require("express");
-const bodyParser = require("body-parser");
 const axios = require("axios");
-
+// const cors=require("co")
 const app = express();
-app.use(bodyParser.json());
+app.use(express.json());
 
-const events = [];
-
-app.post("/events", (req, res) => {
+app.post("/events", async (req, res) => {
   const event = req.body;
 
-  events.push(event);
-
-  // console.log(event);
   axios.post("http://localhost:4000/events", event).catch((err) => {
     console.log(err.message);
   });
@@ -22,14 +16,10 @@ app.post("/events", (req, res) => {
   axios.post("http://localhost:4002/events", event).catch((err) => {
     console.log(err.message);
   });
-  axios.post("http://localhost:4003/events", event).catch((err) => {
-    console.log(err.message);
-  });
-  res.send({ status: "OK" });
+
+  res.send({ status: "ok" });
 });
-app.get("/events", (req, res) => {
-  res.send(events);
-});
+
 app.listen(4005, () => {
-  console.log("listening on 4005 ");
+  console.log("Listern on Port 4005");
 });

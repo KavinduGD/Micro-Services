@@ -1,27 +1,31 @@
-import axios from "axios";
 import { useState } from "react";
+import axios from "axios";
 
-export default () => {
-  const [title, setTitle] = useState("");
+export default ({ postId }) => {
+  const [content, setContent] = useState("");
 
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    await axios.post("http://localhost:4000/posts", { title });
-    setTitle("");
+    await axios.post(`http://localhost:4001/posts/${postId}/comments`, {
+      content,
+    });
+
+    setContent("");
   };
+
   return (
     <div>
       <form onSubmit={onSubmit}>
         <div className="form-group">
-          <label>Title</label>
+          <label>New Comment</label>
           <input
             type="text"
             className="form-control"
-            value={title}
             onChange={(e) => {
-              setTitle(e.target.value);
+              setContent(e.target.value);
             }}
+            value={content}
           />
         </div>
         <button className="btn btn-primary">Submit</button>
