@@ -7,14 +7,14 @@ export default () => {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    await axios.post("http://localhost:31105/posts", { title });
+    await axios.post("http://posts.com/posts/create", { title });
     setTitle("");
   };
   return (
     <div>
       <form onSubmit={onSubmit}>
         <div className="form-group">
-          <label>Title</label>
+          <label>Title!!!</label>
           <input
             type="text"
             className="form-control"
